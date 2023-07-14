@@ -1,13 +1,9 @@
 from Board import Board
 import copy
-import sys
 from time import sleep
-
-sys.setrecursionlimit(20000)
 
 new_board = Board()
 
-win_condition = (4,2)
 
 def pretty_matrix(array):
     print("_______________")
@@ -26,7 +22,6 @@ def solve(Board):
     if Board.board[4][2] == 'd':
         pretty_matrix(Board.board)
         print(len(Board.hashes))
-        print(Board.hashes)
         return True
     new_hash = Board.hash()
     if new_hash not in Board.hashes:
@@ -51,6 +46,3 @@ def solve(Board):
         # os.system('cls' if os.name == 'nt' else 'clear')
         # pretty_matrix(Board.board)
     return False
-
-
-solve(new_board)
