@@ -18,10 +18,9 @@ def pretty_matrix(array):
 
 
 def solve(Board):
-    global moves_mades
     if Board.board[4][2] == 'd':
         pretty_matrix(Board.board)
-        print(len(Board.hashes))
+        print(str(len(Board.hashes)) + " moves")
         return True
     new_hash = Board.hash()
     if new_hash not in Board.hashes:
