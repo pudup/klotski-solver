@@ -2,6 +2,7 @@ from Board import Board
 import copy
 import os
 from time import sleep
+from collections import deque
 
 new_board = Board()
 
@@ -46,3 +47,8 @@ def solve(Board):
         # os.system('cls' if os.name == 'nt' else 'clear')
         # pretty_matrix(Board.board)
     return False
+
+def solveBFS(Board):
+    q = deque()
+    q.append("Place")
+    q.popleft()
