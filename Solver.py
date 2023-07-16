@@ -1,5 +1,6 @@
 from Board import Board
 import copy
+import os
 from time import sleep
 
 new_board = Board()
