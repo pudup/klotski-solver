@@ -41,8 +41,8 @@ class Board:
         pieces = []
         piece_names = ['a', 'b', 'c', 'd']
 
-        for i in range(7):
-            for j in range(6):
+        for i in range(1, 6):
+            for j in range(1, 5):
                 if self.board[i][j] in piece_names:
                     pieces.append([self.board[i][j], (i, j)])
 
@@ -225,8 +225,7 @@ class Board:
 
     def hash(self):
         string = ""
-        for i in range(7):
-            for j in range(6):
-                if self.board[i][j] != "0":
-                    string += self.board[i][j]
+        for i in range(1, 6):
+            for j in range(1, 5):
+                string += self.board[i][j]
         return string
