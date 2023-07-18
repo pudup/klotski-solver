@@ -1,5 +1,5 @@
 from Board import Board
-from Solver import solve_recursive, solve_BFS, view_solution
+from Solver import *
 import sys
 import time
 
@@ -14,9 +14,9 @@ if __name__ == '__main__':
           "Co-ordinates are the top left part of the block (Y,X)")
     board = Board()
     start = time.time()
-    path = solve_BFS(board)
+    path = solve_bfs(board)
     end = time.time()
-    print(str(end-start) + " seconds")
+    print(str(end - start) + " seconds")
 
     # board.reset_board()
     # view_solution(board, path)
