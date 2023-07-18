@@ -64,6 +64,7 @@ def solve_BFS(Board):
             for move in next_move[2]:
                 Board.move_piece(piece_name=next_move[0], piece_coord=next_move[1], direction=move)
                 if Board.board[4][2] == 'd':
+                    curr_board_and_moves_taken[1].append([next_move[0], next_move[1], move])
                     count = 1
                     for path in curr_board_and_moves_taken[1]:
                         print(str(count) + ". " + str(path))
