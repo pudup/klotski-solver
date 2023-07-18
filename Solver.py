@@ -40,9 +40,6 @@ def solve_recursive(klotski_board):
             if solve_recursive(klotski_board):
                 return True
         klotski_board.set_position(board_memo)
-        # sleep(0.005)
-        # os.system('cls' if os.name == 'nt' else 'clear')
-        # pretty_matrix(Board.board)
     return False
 
 
