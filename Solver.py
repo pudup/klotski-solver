@@ -70,7 +70,7 @@ def solve_BFS(Board):
                         print(str(count) + ". " + str(path))
                         count += 1
                     print(str(len(curr_board_and_moves_taken[1])) + " moves")
-                    return
+                    return curr_board_and_moves_taken[1]
                 new_hash = Board.hash()
                 if new_hash not in Board.hashes:
                     Board.hashes.append(new_hash)
@@ -81,3 +81,12 @@ def solve_BFS(Board):
                     Board.set_position(curr_board)
                 else:
                     Board.set_position(curr_board)
+
+
+def view_solution(Board, path):
+    Board = Board
+    for next_move in path:
+        Board.move_piece(piece_name=next_move[0], piece_coord=next_move[1], direction=next_move[2])
+        sleep(0.25)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        pretty_matrix(Board.board)
