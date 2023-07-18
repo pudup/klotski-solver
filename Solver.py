@@ -44,7 +44,6 @@ def solve_recursive(klotski_board):
 
 
 def solve_bfs(klotski_board):
-    klotski_board = klotski_board
     queue = deque()
     curr_board = copy.deepcopy(klotski_board.board)
     queue.append([curr_board, []])
@@ -80,7 +79,6 @@ def solve_bfs(klotski_board):
 
 
 def view_solution(klotski_board, path):
-    klotski_board = klotski_board
     for next_move in path:
         klotski_board.move_piece(piece_name=next_move[0], piece_coord=next_move[1], direction=next_move[2])
         sleep(0.25)
