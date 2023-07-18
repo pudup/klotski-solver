@@ -2,6 +2,13 @@
 
 A simple Klotski puzzle solver written naively. Works from any position.
 
-Uses bruteforce recursive backtracking, so it does not find the shortest path yet.
+Uses BFS to find the shortest path. Takes about 21 seconds (deepcopy overhead?)
 
-Takes 14025 moves to solve in 3-5 seconds.
+
+# Recursive Bruteforce Alternative
+
+Uses bruteforce recursive backtracking, so it does not find the shortest path.
+
+Takes 14025 moves to solve_recursive in 3-5 seconds. Just for fun :>
+<br>
+Maybe this can be improved?

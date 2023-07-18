@@ -1,5 +1,5 @@
 from Board import Board
-from Solver import solve
+from Solver import solve_recursive, solve_BFS
 import sys
 import time
 
@@ -9,6 +9,6 @@ sys.setrecursionlimit(5000)
 if __name__ == '__main__':
     board = Board()
     start = time.time()
-    solve(board)
+    solve_BFS(board)
     end = time.time()
     print(str(end-start) + " seconds")
