@@ -21,4 +21,4 @@ def draw(surface):
     pygame.draw.line(surface, THICC_LINES_COL, (384, 451), (128, 451), 8)
 
     # Exit
-    pygame.draw.line(surface, BACKGROUND_COL, (320, 451), (192, 451), 8)
+    pygame.draw.line(surface, BACKGROUND_COL, (319, 451), (192, 451), 8)
