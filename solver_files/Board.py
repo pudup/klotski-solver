@@ -1,4 +1,7 @@
 import copy
+import random
+
+zobrist_hash_table = [[[random.randint(1, 2 ** 64 - 1) for i in range(4)] for j in range(5)] for k in range(6)]
 
 
 class Board:
@@ -203,8 +206,21 @@ class Board:
                         self.board[pos_i + 1][pos_j] = 'O'
 
     def hash(self):
-        string = ""
+        hash = 0
         for i in range(1, 6):
             for j in range(1, 5):
-                string += self.board[i][j]
-        return string
+                if self.board[i][j] != 'x' and self.board[i][j] != 'O':
+                    part = self.indexer(self.board[i][j])
+                    hash ^= zobrist_hash_table[i][j][part]
+        return hash
+
+    def indexer(self, part):
+        match part:
+            case 'a':
+                return 0
+            case 'b':
+                return 1
+            case 'c':
+                return 2
+            case 'd':
+                return 3
