@@ -1,8 +1,8 @@
 import pygame
 import sys
 from pygame_files import Blocks
-from Board import Board
-from Solver import solve_bfs
+from solver_files.Board import Board
+from solver_files.Solver import solve_bfs
 from pygame_files.AnimateSolution import animate_solution, clean_path
 
 THIN_LINES_COL = (255, 161, 201)

@@ -1,5 +1,5 @@
-from Board import Board
-from Solver import *
+from solver_files.Board import Board
+from solver_files.Solver import *
 import sys
 import time
 
