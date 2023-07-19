@@ -7,16 +7,19 @@ sys.setrecursionlimit(5000)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print("a blocks are long vertical\n"
-          "b blocks are long horizontal\n"
-          "c blocks are the single blocks\n"
-          "d block is the goal block\n"
-          "Co-ordinates are the top left part of the block (Y,X)")
+    print("Calculating solutions...")
     board = Board()
     start = time.time()
-    path = solve_bfs(board)
+    path = find_all_bfs(board)
     end = time.time()
     print(str(end - start) + " seconds")
 
-    # board.reset_board()
-    # view_solution(board, path)
+    print("Number of unique solutions = " + str(path[1]))
+    print("Minimum number of moves = " + str(path[2]))
+    print("Maximum number of moves without repeating = " + str(path[3]))
+    print(f"Shortest solution is -> {path[4]}")
+    print("a is a long vertical block\n"
+          "b blocks is a long horizontal block\n"
+          "c is a single blocks\n"
+          "d is the goal block\n"
+          "Co-ordinates are the top left part of the block (Y,X)")
