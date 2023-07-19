@@ -2,7 +2,7 @@
 
 A simple Klotski puzzle solver written naively. Works from any position.
 
-Uses BFS to find the shortest path. Takes about 18-22 seconds (deepcopy overhead?)
+Uses BFS to find the shortest path. Takes about 16 seconds (deepcopy overhead?)
 <br>
 Also finds every single unique solution in a couple seconds more.
 
