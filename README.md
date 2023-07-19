@@ -21,9 +21,9 @@ An animation in pygame-ce for the shortest path solution
 <br>
 Takes 18-22 seconds to spin up while it calculates the shortest path
 
-<img src="assets/github/solution.gif" width="256"/>
-<img src="assets/github/alternate.gif" width="256"/>
-<img src="assets/github/alternate2.gif" width="256"/>
+<img src="assets/github/solution.gif" width="256"/><br>
+<img src="assets/github/alternate.gif" width="256"/><br>
+<img src="assets/github/alternate2.gif" width="256"/><br>
 
 
 # Modify the Starting Position
