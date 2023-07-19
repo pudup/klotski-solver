@@ -2,39 +2,18 @@ import copy
 
 
 class Board:
-    def __init__(self):
+    def __init__(self, grid):
         self.board = []
         self.hashes = []
 
-        self.reset_board()
+        self.set_board(grid)
         self.moves = self.get_possible_moves()
 
     def set_position(self, new):
         self.board = copy.deepcopy(new)
 
-    def reset_board(self):
-        original_board = [
-            ['0', '0', '0', '0', '0', '0'],
-            ['0', 'a', 'd', 'x', 'a', '0'],
-            ['0', 'x', 'x', 'x', 'x', '0'],
-            ['0', 'a', 'b', 'x', 'a', '0'],
-            ['0', 'x', 'c', 'c', 'x', '0'],
-            ['0', 'c', 'O', 'O', 'c', '0'],
-            ['0', '0', '0', '0', '0', '0'],
-        ]
-        self.set_position(original_board)
-
-    def reset_alternative(self):
-        alternate_board = [
-            ['0', '0', '0', '0', '0', '0'],
-            ['0', 'a', 'd', 'x', 'a', '0'],
-            ['0', 'x', 'x', 'x', 'x', '0'],
-            ['0', 'a', 'c', 'c', 'a', '0'],
-            ['0', 'x', 'c', 'c', 'x', '0'],
-            ['0', 'O', 'b', 'x', 'O', '0'],
-            ['0', '0', '0', '0', '0', '0'],
-        ]
-        self.set_position(alternate_board)
+    def set_board(self, grid):
+        self.set_position(grid)
 
     def get_piece_positions(self):
 

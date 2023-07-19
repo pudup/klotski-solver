@@ -1,24 +1,31 @@
 import pygame
 import sys
-from pygame_files import Blocks
+import json
+from pygame_files import Animator
 from solver_files.Board import Board
 from solver_files.Solver import solve_bfs
 from pygame_files.AnimateSolution import animate_solution
 
-THIN_LINES_COL = (255, 161, 201)
-
 
 def main():
-    board = Board()
-    path = solve_bfs(board)
+    with open("boards/default.json", 'r') as f:
+        board_grid = json.load(f)
+    board = Board(board_grid)
 
     pygame.init()
     clock = pygame.time.Clock()
+    font = pygame.font.SysFont("Verdana", 32)
+    solving_text = font.render('Solving...', True, (44, 54, 57))
+
     done = False
 
     surface = pygame.display.set_mode((512, 512 + 64))
     pygame.display.set_caption("Klotski Solver")
-    mover = Blocks.Mover(surface)
+    mover = Animator.Animator(surface, board_grid)
+    surface.blit(solving_text, ((256 + 128) / 2, 64 + 32 / 2))
+
+    pygame.display.update()
+    path = solve_bfs(board)
 
     while True:
         pygame.display.update()

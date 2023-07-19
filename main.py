@@ -2,13 +2,16 @@ from solver_files.Board import Board
 from solver_files.Solver import *
 import sys
 import time
+import json
 
 sys.setrecursionlimit(5000)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print("Calculating solutions...")
-    board = Board()
+    with open("boards/default.json", 'r') as f:
+        board_grid = json.load(f)
+    board = Board(board_grid)
     start = time.time()
     path = find_all_bfs(board)
     end = time.time()
