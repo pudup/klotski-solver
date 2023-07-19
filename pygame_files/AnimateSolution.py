@@ -2,13 +2,6 @@ import pygame
 from time import sleep
 
 
-def clean_path(path):
-    for move in path:
-        new_move = [move[1][0] - 1, move[1][1] - 1]
-        move[1] = new_move
-    return path
-
-
 def animate_solution(mover, path):
     for move in path:
         posi_i = 0

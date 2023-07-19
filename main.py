@@ -19,7 +19,7 @@ if __name__ == '__main__':
     print("Maximum number of moves without repeating = " + str(path[3]))
     print(f"Shortest solution is -> {path[4]}")
     print("a is a long vertical block\n"
-          "b blocks is a long horizontal block\n"
+          "b is a long horizontal block\n"
           "c is a single blocks\n"
           "d is the goal block\n"
           "Co-ordinates are the top left part of the block (Y,X)")

@@ -3,14 +3,14 @@ import sys
 from pygame_files import Blocks
 from solver_files.Board import Board
 from solver_files.Solver import solve_bfs
-from pygame_files.AnimateSolution import animate_solution, clean_path
+from pygame_files.AnimateSolution import animate_solution
 
 THIN_LINES_COL = (255, 161, 201)
 
 
 def main():
     board = Board()
-    path = clean_path(solve_bfs(board))
+    path = solve_bfs(board)
 
     pygame.init()
     clock = pygame.time.Clock()
