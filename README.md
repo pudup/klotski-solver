@@ -22,14 +22,18 @@ An animation in pygame-ce for the shortest path solution
 Takes 18-22 seconds to spin up while it calculates the shortest path
 
 <img src="assets/github/solution.gif" width="256"/>
+<img src="assets/github/alternate.gif" width="256"/>
+<img src="assets/github/alternate2.gif" width="256"/>
 
 
 # Modify the Starting Position
 
-Modify original_board in solver_files/Board.py to change the starting position
+Modify the json files in the boards folder.
 
-You will also have to modify original_board in pygame_files/Blocks.py if you want the animation to work
+~~Modify original_board in solver_files/Board.py to change the starting position~~
+
+~~You will also have to modify original_board in pygame_files/Blocks.py if you want the animation to work~~
 
 # TODO
 
-- [ ] Add a simpler way to modify the board without modifying the main files. Import from json, perhaps.
+- [x] Add a simpler way to modify the board without modifying the main files. Import from json, perhaps.
