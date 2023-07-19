@@ -1,9 +1,13 @@
 import pygame
 from time import sleep
-
+import sys
 
 def animate_solution(mover, path):
     for move in path:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
         posi_i = 0
         posi_j = 0
         match move[2]:
