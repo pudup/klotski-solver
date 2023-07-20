@@ -34,9 +34,16 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if done:
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        del mover
+                        mover = Animator.Animator(surface, board_grid)
+                        animate_solution(mover, path)
         if not done:
             done = True
             animate_solution(mover, path)
+
 
 
 if __name__ == "__main__":
