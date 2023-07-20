@@ -37,4 +37,4 @@ Modify the json files in the boards folder.
 # TODO
 
 - [x] Add a simpler way to modify the board without modifying the main files. Import from json, perhaps.
-- [ ] Fully implement Zobrist hashing (currently just works as a basic hash, but still somehow faster then the naive hash from before)
+- [x] Fully implement Zobrist hashing (currently just works as a basic hash, but still somehow faster then the naive hash from before)
