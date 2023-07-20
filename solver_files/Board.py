@@ -9,14 +9,11 @@ class Board:
         self.board = []
         self.hashes = []
 
-        self.set_board(grid)
+        self.set_position(grid)
         self.moves = self.get_possible_moves()
 
     def set_position(self, new):
         self.board = copy.deepcopy(new)
-
-    def set_board(self, grid):
-        self.set_position(grid)
 
     def get_piece_positions(self):
 
