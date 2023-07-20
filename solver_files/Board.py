@@ -224,3 +224,29 @@ class Board:
                 return 2
             case 'd':
                 return 3
+
+    def update_hash(self, hash, piece, position, direction):
+        piece_index = self.indexer(piece)
+        old_i, old_j = position
+        new_hash = hash ^ zobrist_hash_table[old_i][old_j][piece_index]
+        match direction:
+            case 'UP':
+                posi_i = -1
+                posi_j = 0
+            case 'DOWN':
+                posi_i = 1
+                posi_j = 0
+            case 'LEFT':
+                posi_i = 0
+                posi_j = -1
+            case 'RIGHT':
+                posi_i = 0
+                posi_j = 1
+            case _:
+                posi_i = 0
+                posi_j = 0
+        old_i += posi_i
+        old_j += posi_j
+        final_hash = new_hash ^ zobrist_hash_table[old_i][old_j][piece_index]
+        return final_hash
+
