@@ -22,8 +22,10 @@ def solve_recursive(klotski_board):
         print(str(len(klotski_board.hashes)) + " moves")
         return True
     new_hash = klotski_board.hash()
+    hash_mirror = klotski_board.hash_mirror(new_hash)
     if new_hash not in klotski_board.hashes:
         klotski_board.hashes.append(new_hash)
+        klotski_board.hashes.append(hash_mirror)
     else:
         return False
     board_memo = copy.deepcopy(klotski_board.board)
@@ -69,8 +71,10 @@ def solve_bfs(klotski_board):
                     print(str(len(curr_board_and_moves_taken_and_hash[1])) + " moves")
                     return curr_board_and_moves_taken_and_hash[1]
                 new_hash = klotski_board.update_hash(curr_hash, next_move[0], next_move[1], move)
+                hash_mirror = klotski_board.hash_mirror(new_hash)
                 if new_hash not in klotski_board.hashes:
                     klotski_board.hashes.append(new_hash)
+                    klotski_board.hashes.append(hash_mirror)
                     new_board_position = copy.deepcopy(klotski_board.board)
                     moves_taken_new = copy.deepcopy(moves_taken)
                     moves_taken_new.append([next_move[0], next_move[1], move])
@@ -114,8 +118,10 @@ def find_all_bfs(klotski_board):
                         longest_solution = curr_board_and_moves_taken_and_hash[1]
 
                 new_hash = klotski_board.update_hash(curr_hash, next_move[0], next_move[1], move)
+                hash_mirror = klotski_board.hash_mirror(new_hash)
                 if new_hash not in klotski_board.hashes:
                     klotski_board.hashes.append(new_hash)
+                    klotski_board.hashes.append(hash_mirror)
                     new_board_position = copy.deepcopy(klotski_board.board)
                     moves_taken_new = copy.deepcopy(moves_taken)
                     moves_taken_new.append([next_move[0], next_move[1], move])

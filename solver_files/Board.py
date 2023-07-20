@@ -247,3 +247,32 @@ class Board:
         final_hash = new_hash ^ zobrist_hash_table[old_i][old_j][piece_index]
         return final_hash
 
+    def hash_mirror(self, hash):
+        for i in range(1, 6):
+            for j in range(1, 5):
+                piece = self.board[i][j]
+                part = self.indexer(self.board[i][j])
+                if piece == 'd' or piece == 'b':
+                    if j == 2:
+                        pass
+                    if j == 1:
+                        hash ^= zobrist_hash_table[i][j][part]
+                        hash ^= zobrist_hash_table[i][j+2][part]
+                    if j == 3:
+                        hash ^= zobrist_hash_table[i][j][part]
+                        hash ^= zobrist_hash_table[i][j-2][part]
+                elif piece == 'a' or piece == 'c':
+                    if j == 1:
+                        hash ^= zobrist_hash_table[i][j][part]
+                        hash ^= zobrist_hash_table[i][j+3][part]
+                    elif j == 2:
+                        hash ^= zobrist_hash_table[i][j][part]
+                        hash ^= zobrist_hash_table[i][j+1][part]
+                    elif j == 3:
+                        hash ^= zobrist_hash_table[i][j][part]
+                        hash ^= zobrist_hash_table[i][j-1][part]
+                    else:
+                        hash ^= zobrist_hash_table[i][j][part]
+                        hash ^= zobrist_hash_table[i][j-3][part]
+        return hash
+
