@@ -6,8 +6,7 @@ import json
 
 sys.setrecursionlimit(5000)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
+def main():
     print("Calculating solutions...")
     with open("boards/default.json", 'r') as f:
         board_grid = json.load(f)
@@ -26,3 +25,6 @@ if __name__ == '__main__':
           "c is a single blocks\n"
           "d is the goal block\n"
           "Co-ordinates are the top left part of the block (Y,X)")
+
+if __name__ == '__main__':
+    main()
