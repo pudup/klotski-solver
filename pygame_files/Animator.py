@@ -1,18 +1,15 @@
-import pygame
 from pygame_files import Background
 from pygame_files.Blocks import Block
 
 positions = [
-    [0, 0, 0, 0, 0, 0], # Padding
+    [0, 0, 0, 0, 0, 0],  # Padding
     [0, (128, 128), (192, 128), (256, 128), (320, 128), 0],
     [0, (128, 192), (192, 192), (256, 192), (320, 192), 0],
     [0, (128, 256), (192, 256), (256, 256), (320, 256), 0],
     [0, (128, 320), (192, 320), (256, 320), (320, 320), 0],
     [0, (128, 384), (192, 384), (256, 384), (320, 384), 0],
-    [0, 0, 0, 0, 0, 0], # Also Padding
+    [0, 0, 0, 0, 0, 0],  # Also Padding
 ]
-
-
 
 
 class Animator:
@@ -21,7 +18,6 @@ class Animator:
         self.blocks = create_blocks(grid)
         Background.draw(self.surface)
         self.starting_position()
-
 
     def starting_position(self):
         for block in self.blocks:

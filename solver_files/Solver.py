@@ -83,9 +83,10 @@ def solve_bfs(klotski_board):
                 else:
                     klotski_board.set_position(curr_board)
 
+
 def find_all_bfs(klotski_board):
-    min = 1e7
-    max = 0
+    minimum = 1e7
+    maximum = 0
     solutions = 0
     solutions_list = []
     shortest_solution = None
@@ -109,12 +110,13 @@ def find_all_bfs(klotski_board):
                 if klotski_board.board[4][2] == 'd':
                     solutions += 1
                     curr_board_and_moves_taken_and_hash[1].append([next_move[0], next_move[1], move])
-                    solutions_list.append([curr_board_and_moves_taken_and_hash[1], len(curr_board_and_moves_taken_and_hash[1])])
-                    if len(curr_board_and_moves_taken_and_hash[1]) < min:
-                        min = len(curr_board_and_moves_taken_and_hash[1])
+                    solutions_list.append(
+                        [curr_board_and_moves_taken_and_hash[1], len(curr_board_and_moves_taken_and_hash[1])])
+                    if len(curr_board_and_moves_taken_and_hash[1]) < minimum:
+                        minimum = len(curr_board_and_moves_taken_and_hash[1])
                         shortest_solution = curr_board_and_moves_taken_and_hash[1]
-                    if len(curr_board_and_moves_taken_and_hash[1]) > max:
-                        max = len(curr_board_and_moves_taken_and_hash[1])
+                    if len(curr_board_and_moves_taken_and_hash[1]) > maximum:
+                        maximum = len(curr_board_and_moves_taken_and_hash[1])
                         longest_solution = curr_board_and_moves_taken_and_hash[1]
 
                 new_hash = klotski_board.update_hash(curr_hash, next_move[0], next_move[1], move)
@@ -130,7 +132,7 @@ def find_all_bfs(klotski_board):
                 else:
                     klotski_board.set_position(curr_board)
 
-    return (solutions_list, solutions, min, max, shortest_solution, longest_solution)
+    return solutions_list, solutions, minimum, maximum, shortest_solution, longest_solution
 
 
 def view_solution(klotski_board, path):

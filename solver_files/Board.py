@@ -203,15 +203,16 @@ class Board:
                         self.board[pos_i + 1][pos_j] = 'O'
 
     def hash(self):
-        hash = 0
+        board_hash = 0
         for i in range(1, 6):
             for j in range(1, 5):
                 if self.board[i][j] != 'x' and self.board[i][j] != 'O':
                     part = self.indexer(self.board[i][j])
-                    hash ^= zobrist_hash_table[i][j][part]
-        return hash
+                    board_hash ^= zobrist_hash_table[i][j][part]
+        return board_hash
 
-    def indexer(self, part):
+    @staticmethod
+    def indexer(part):
         match part:
             case 'a':
                 return 0
@@ -222,10 +223,10 @@ class Board:
             case 'd':
                 return 3
 
-    def update_hash(self, hash, piece, position, direction):
+    def update_hash(self, board_hash, piece, position, direction):
         piece_index = self.indexer(piece)
         old_i, old_j = position
-        new_hash = hash ^ zobrist_hash_table[old_i][old_j][piece_index]
+        new_hash = board_hash ^ zobrist_hash_table[old_i][old_j][piece_index]
         match direction:
             case 'UP':
                 posi_i = -1
@@ -247,30 +248,29 @@ class Board:
         final_hash = new_hash ^ zobrist_hash_table[old_i][old_j][piece_index]
         return final_hash
 
-    def hash_mirror(self, hash):
+    def hash_mirror(self, board_hash):
         for i in range(1, 6):
             for j in range(1, 5):
                 piece = self.board[i][j]
                 part = self.indexer(self.board[i][j])
                 if piece == 'd' or piece == 'b':
                     if j == 1:
-                        hash ^= zobrist_hash_table[i][j][part]
-                        hash ^= zobrist_hash_table[i][j+2][part]
+                        board_hash ^= zobrist_hash_table[i][j][part]
+                        board_hash ^= zobrist_hash_table[i][j + 2][part]
                     if j == 3:
-                        hash ^= zobrist_hash_table[i][j][part]
-                        hash ^= zobrist_hash_table[i][j-2][part]
+                        board_hash ^= zobrist_hash_table[i][j][part]
+                        board_hash ^= zobrist_hash_table[i][j - 2][part]
                 elif piece == 'a' or piece == 'c':
                     if j == 1:
-                        hash ^= zobrist_hash_table[i][j][part]
-                        hash ^= zobrist_hash_table[i][j+3][part]
+                        board_hash ^= zobrist_hash_table[i][j][part]
+                        board_hash ^= zobrist_hash_table[i][j + 3][part]
                     elif j == 2:
-                        hash ^= zobrist_hash_table[i][j][part]
-                        hash ^= zobrist_hash_table[i][j+1][part]
+                        board_hash ^= zobrist_hash_table[i][j][part]
+                        board_hash ^= zobrist_hash_table[i][j + 1][part]
                     elif j == 3:
-                        hash ^= zobrist_hash_table[i][j][part]
-                        hash ^= zobrist_hash_table[i][j-1][part]
+                        board_hash ^= zobrist_hash_table[i][j][part]
+                        board_hash ^= zobrist_hash_table[i][j - 1][part]
                     else:
-                        hash ^= zobrist_hash_table[i][j][part]
-                        hash ^= zobrist_hash_table[i][j-3][part]
-        return hash
-
+                        board_hash ^= zobrist_hash_table[i][j][part]
+                        board_hash ^= zobrist_hash_table[i][j - 3][part]
+        return board_hash
