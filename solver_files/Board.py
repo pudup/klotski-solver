@@ -253,8 +253,6 @@ class Board:
                 piece = self.board[i][j]
                 part = self.indexer(self.board[i][j])
                 if piece == 'd' or piece == 'b':
-                    if j == 2:
-                        pass
                     if j == 1:
                         hash ^= zobrist_hash_table[i][j][part]
                         hash ^= zobrist_hash_table[i][j+2][part]
