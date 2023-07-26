@@ -26,4 +26,4 @@ def animate_solution(mover, path):
         direction_i, direction_j = move[1][0] + posi_i, move[1][1] + posi_j
         mover.move(move[1], (direction_i, direction_j))
         pygame.display.update()
-        sleep(0.25)
+        pygame.time.wait(200)
