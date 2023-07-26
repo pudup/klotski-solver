@@ -1,5 +1,4 @@
 import pygame
-from time import sleep
 import sys
 
 def animate_solution(mover, path):
