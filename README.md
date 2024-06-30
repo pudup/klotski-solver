@@ -32,9 +32,7 @@ Takes 9 seconds to spin up while it calculates the shortest path
 
 Modify the json files in the boards folder.
 
-~~Modify original_board in solver_files/Board.py to change the starting position~~
-
-~~You will also have to modify original_board in pygame_files/Blocks.py if you want the animation to work~~
+Then change the selected json in main/main-animated
 
 # TODO
 
