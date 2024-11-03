@@ -42,72 +42,56 @@ class Board:
                     # Up Check
                     if self.board[pos_i - 1][pos_j] == 'O':
                         piece[2].append("UP")
-                        can_move = True
                     # Down Check
                     if self.board[pos_i + 2][pos_j] == 'O':
                         piece[2].append("DOWN")
-                        can_move = True
                     # Left Check
                     if self.board[pos_i][pos_j - 1] == 'O' and self.board[pos_i + 1][pos_j - 1] == 'O':
                         piece[2].append("LEFT")
-                        can_move = True
                     # Right Check
                     if self.board[pos_i][pos_j + 1] == 'O' and self.board[pos_i + 1][pos_j + 1] == 'O':
                         piece[2].append("RIGHT")
-                        can_move = True
                 case 'b':
                     # Up Check
                     if self.board[pos_i - 1][pos_j] == 'O' and self.board[pos_i - 1][pos_j + 1] == 'O':
                         piece[2].append("UP")
-                        can_move = True
                     # Down Check
                     if self.board[pos_i + 1][pos_j] == 'O' and self.board[pos_i + 1][pos_j + 1] == 'O':
                         piece[2].append("DOWN")
-                        can_move = True
                     # Left Check
                     if self.board[pos_i][pos_j - 1] == 'O':
                         piece[2].append("LEFT")
-                        can_move = True
                     # Right Check
                     if self.board[pos_i][pos_j + 2] == 'O':
                         piece[2].append("RIGHT")
-                        can_move = True
                 case 'c':
                     # Up Check
                     if self.board[pos_i - 1][pos_j] == 'O':
                         piece[2].append("UP")
-                        can_move = True
                     # Down Check
                     if self.board[pos_i + 1][pos_j] == 'O':
                         piece[2].append("DOWN")
-                        can_move = True
                     # Left Check
                     if self.board[pos_i][pos_j - 1] == 'O':
                         piece[2].append("LEFT")
-                        can_move = True
                     # Right Check
                     if self.board[pos_i][pos_j + 1] == 'O':
                         piece[2].append("RIGHT")
-                        can_move = True
                 case 'd':
                     # Up Check
                     if self.board[pos_i - 1][pos_j] == 'O' and self.board[pos_i - 1][pos_j + 1] == 'O':
                         piece[2].append("UP")
-                        can_move = True
                     # Down Check
                     if self.board[pos_i + 2][pos_j] == 'O' and self.board[pos_i + 2][pos_j + 1] == 'O':
                         piece[2].append("DOWN")
-                        can_move = True
                     # Left Check
                     if self.board[pos_i][pos_j - 1] == 'O' and self.board[pos_i + 1][pos_j - 1] == 'O':
                         piece[2].append("LEFT")
-                        can_move = True
                     # Right Check
                     if self.board[pos_i][pos_j + 2] == 'O' and self.board[pos_i + 1][pos_j + 2] == 'O':
                         piece[2].append("RIGHT")
-                        can_move = True
 
-            if can_move:
+            if piece[2]:
                 piece_moves.append(piece)
 
         return piece_moves
