@@ -1,5 +1,6 @@
 import copy
 import random
+from solver_files.Constants import Directions, PieceNames
 
 zobrist_hash_table = [[[random.randint(1, 2 ** 64 - 1) for i in range(4)] for j in range(5)] for k in range(6)]
 
@@ -18,7 +19,7 @@ class Board:
     def get_piece_positions(self):
 
         pieces = []
-        piece_names = ['a', 'b', 'c', 'd']
+        piece_names = {PieceNames.HORI_2, PieceNames.VERT_2, PieceNames.SINGL, PieceNames.BIG_BLOCK}
 
         for i in range(1, 6):
             for j in range(1, 5):
@@ -32,64 +33,63 @@ class Board:
         piece_moves = []
 
         for piece in pieces:
-            can_move = False
             it = piece[0]
             pos_i, pos_j = piece[1]
             piece.append([])
 
             match it:
-                case 'a':
+                case PieceNames.HORI_2:
                     # Up Check
-                    if self.board[pos_i - 1][pos_j] == 'O':
-                        piece[2].append("UP")
+                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY:
+                        piece[2].append(Directions.UP)
                     # Down Check
-                    if self.board[pos_i + 2][pos_j] == 'O':
-                        piece[2].append("DOWN")
+                    if self.board[pos_i + 2][pos_j] == PieceNames.EMPTY:
+                        piece[2].append(Directions.DOWN)
                     # Left Check
-                    if self.board[pos_i][pos_j - 1] == 'O' and self.board[pos_i + 1][pos_j - 1] == 'O':
-                        piece[2].append("LEFT")
+                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j - 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.LEFT)
                     # Right Check
-                    if self.board[pos_i][pos_j + 1] == 'O' and self.board[pos_i + 1][pos_j + 1] == 'O':
-                        piece[2].append("RIGHT")
-                case 'b':
+                    if self.board[pos_i][pos_j + 1] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j + 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.RIGHT)
+                case PieceNames.VERT_2:
                     # Up Check
-                    if self.board[pos_i - 1][pos_j] == 'O' and self.board[pos_i - 1][pos_j + 1] == 'O':
-                        piece[2].append("UP")
+                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY and self.board[pos_i - 1][pos_j + 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.UP)
                     # Down Check
-                    if self.board[pos_i + 1][pos_j] == 'O' and self.board[pos_i + 1][pos_j + 1] == 'O':
-                        piece[2].append("DOWN")
+                    if self.board[pos_i + 1][pos_j] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j + 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.DOWN)
                     # Left Check
-                    if self.board[pos_i][pos_j - 1] == 'O':
-                        piece[2].append("LEFT")
+                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.LEFT)
                     # Right Check
-                    if self.board[pos_i][pos_j + 2] == 'O':
-                        piece[2].append("RIGHT")
-                case 'c':
+                    if self.board[pos_i][pos_j + 2] == PieceNames.EMPTY:
+                        piece[2].append(Directions.RIGHT)
+                case PieceNames.SINGL:
                     # Up Check
-                    if self.board[pos_i - 1][pos_j] == 'O':
-                        piece[2].append("UP")
+                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY:
+                        piece[2].append(Directions.UP)
                     # Down Check
-                    if self.board[pos_i + 1][pos_j] == 'O':
-                        piece[2].append("DOWN")
+                    if self.board[pos_i + 1][pos_j] == PieceNames.EMPTY:
+                        piece[2].append(Directions.DOWN)
                     # Left Check
-                    if self.board[pos_i][pos_j - 1] == 'O':
-                        piece[2].append("LEFT")
+                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.LEFT)
                     # Right Check
-                    if self.board[pos_i][pos_j + 1] == 'O':
-                        piece[2].append("RIGHT")
-                case 'd':
+                    if self.board[pos_i][pos_j + 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.RIGHT)
+                case PieceNames.BIG_BLOCK:
                     # Up Check
-                    if self.board[pos_i - 1][pos_j] == 'O' and self.board[pos_i - 1][pos_j + 1] == 'O':
-                        piece[2].append("UP")
+                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY and self.board[pos_i - 1][pos_j + 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.UP)
                     # Down Check
-                    if self.board[pos_i + 2][pos_j] == 'O' and self.board[pos_i + 2][pos_j + 1] == 'O':
-                        piece[2].append("DOWN")
+                    if self.board[pos_i + 2][pos_j] == PieceNames.EMPTY and self.board[pos_i + 2][pos_j + 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.DOWN)
                     # Left Check
-                    if self.board[pos_i][pos_j - 1] == 'O' and self.board[pos_i + 1][pos_j - 1] == 'O':
-                        piece[2].append("LEFT")
+                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j - 1] == PieceNames.EMPTY:
+                        piece[2].append(Directions.LEFT)
                     # Right Check
-                    if self.board[pos_i][pos_j + 2] == 'O' and self.board[pos_i + 1][pos_j + 2] == 'O':
-                        piece[2].append("RIGHT")
+                    if self.board[pos_i][pos_j + 2] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j + 2] == PieceNames.EMPTY:
+                        piece[2].append(Directions.RIGHT)
 
             if piece[2]:
                 piece_moves.append(piece)
@@ -101,96 +101,96 @@ class Board:
         pos_i, pos_j = piece_coord
 
         match it:
-            case 'a':
+            case PieceNames.HORI_2:
                 match direction:
-                    case "UP":
-                        self.board[pos_i - 1][pos_j] = 'a'
-                        self.board[pos_i][pos_j] = 'x'
-                        self.board[pos_i + 1][pos_j] = 'O'
-                    case "DOWN":
-                        self.board[pos_i + 1][pos_j] = 'a'
-                        self.board[pos_i + 2][pos_j] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-                    case "LEFT":
-                        self.board[pos_i][pos_j - 1] = 'a'
-                        self.board[pos_i + 1][pos_j - 1] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-                        self.board[pos_i + 1][pos_j] = 'O'
-                    case "RIGHT":
-                        self.board[pos_i][pos_j + 1] = 'a'
-                        self.board[pos_i + 1][pos_j + 1] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-                        self.board[pos_i + 1][pos_j] = 'O'
-            case 'b':
+                    case Directions.UP:
+                        self.board[pos_i - 1][pos_j] = PieceNames.HORI_2
+                        self.board[pos_i][pos_j] = PieceNames.TAIL
+                        self.board[pos_i + 1][pos_j] = PieceNames.EMPTY
+                    case Directions.DOWN:
+                        self.board[pos_i + 1][pos_j] = PieceNames.HORI_2
+                        self.board[pos_i + 2][pos_j] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                    case Directions.LEFT:
+                        self.board[pos_i][pos_j - 1] = PieceNames.HORI_2
+                        self.board[pos_i + 1][pos_j - 1] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                        self.board[pos_i + 1][pos_j] = PieceNames.EMPTY
+                    case Directions.RIGHT:
+                        self.board[pos_i][pos_j + 1] = PieceNames.HORI_2
+                        self.board[pos_i + 1][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                        self.board[pos_i + 1][pos_j] = PieceNames.EMPTY
+            case PieceNames.VERT_2:
                 match direction:
-                    case "UP":
-                        self.board[pos_i - 1][pos_j] = 'b'
-                        self.board[pos_i - 1][pos_j + 1] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-                        self.board[pos_i][pos_j + 1] = 'O'
-                    case "DOWN":
-                        self.board[pos_i + 1][pos_j] = 'b'
-                        self.board[pos_i + 1][pos_j + 1] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-                        self.board[pos_i][pos_j + 1] = 'O'
-                    case "LEFT":
-                        self.board[pos_i][pos_j - 1] = 'b'
-                        self.board[pos_i][pos_j] = 'x'
-                        self.board[pos_i][pos_j + 1] = 'O'
-                    case "RIGHT":
-                        self.board[pos_i][pos_j + 1] = 'b'
-                        self.board[pos_i][pos_j + 2] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-            case 'c':
+                    case Directions.UP:
+                        self.board[pos_i - 1][pos_j] = PieceNames.VERT_2
+                        self.board[pos_i - 1][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                        self.board[pos_i][pos_j + 1] = PieceNames.EMPTY
+                    case Directions.DOWN:
+                        self.board[pos_i + 1][pos_j] = PieceNames.VERT_2
+                        self.board[pos_i + 1][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                        self.board[pos_i][pos_j + 1] = PieceNames.EMPTY
+                    case Directions.LEFT:
+                        self.board[pos_i][pos_j - 1] = PieceNames.VERT_2
+                        self.board[pos_i][pos_j] = PieceNames.TAIL
+                        self.board[pos_i][pos_j + 1] = PieceNames.EMPTY
+                    case Directions.RIGHT:
+                        self.board[pos_i][pos_j + 1] = PieceNames.VERT_2
+                        self.board[pos_i][pos_j + 2] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+            case PieceNames.SINGL:
                 match direction:
-                    case "UP":
-                        self.board[pos_i - 1][pos_j] = 'c'
-                        self.board[pos_i][pos_j] = 'O'
-                    case "DOWN":
-                        self.board[pos_i + 1][pos_j] = 'c'
-                        self.board[pos_i][pos_j] = 'O'
-                    case "LEFT":
-                        self.board[pos_i][pos_j - 1] = 'c'
-                        self.board[pos_i][pos_j] = 'O'
-                    case "RIGHT":
-                        self.board[pos_i][pos_j + 1] = 'c'
-                        self.board[pos_i][pos_j] = 'O'
-            case 'd':
+                    case Directions.UP:
+                        self.board[pos_i - 1][pos_j] = PieceNames.SINGL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                    case Directions.DOWN:
+                        self.board[pos_i + 1][pos_j] = PieceNames.SINGL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                    case Directions.LEFT:
+                        self.board[pos_i][pos_j - 1] = PieceNames.SINGL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                    case Directions.RIGHT:
+                        self.board[pos_i][pos_j + 1] = PieceNames.SINGL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+            case PieceNames.BIG_BLOCK:
                 match direction:
-                    case "UP":
-                        self.board[pos_i - 1][pos_j] = 'd'
-                        self.board[pos_i - 1][pos_j + 1] = 'x'
-                        self.board[pos_i][pos_j] = 'x'
-                        self.board[pos_i][pos_j + 1] = 'x'
-                        self.board[pos_i + 1][pos_j] = 'O'
-                        self.board[pos_i + 1][pos_j + 1] = 'O'
-                    case "DOWN":
-                        self.board[pos_i + 1][pos_j] = 'd'
-                        self.board[pos_i + 1][pos_j + 1] = 'x'
-                        self.board[pos_i + 2][pos_j] = 'x'
-                        self.board[pos_i + 2][pos_j + 1] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-                        self.board[pos_i][pos_j + 1] = 'O'
-                    case "LEFT":
-                        self.board[pos_i][pos_j - 1] = 'd'
-                        self.board[pos_i][pos_j] = 'x'
-                        self.board[pos_i + 1][pos_j - 1] = 'x'
-                        self.board[pos_i + 1][pos_j] = 'x'
-                        self.board[pos_i][pos_j + 1] = 'O'
-                        self.board[pos_i + 1][pos_j + 1] = 'O'
-                    case "RIGHT":
-                        self.board[pos_i][pos_j + 1] = 'd'
-                        self.board[pos_i][pos_j + 2] = 'x'
-                        self.board[pos_i + 1][pos_j + 1] = 'x'
-                        self.board[pos_i + 1][pos_j + 2] = 'x'
-                        self.board[pos_i][pos_j] = 'O'
-                        self.board[pos_i + 1][pos_j] = 'O'
+                    case Directions.UP:
+                        self.board[pos_i - 1][pos_j] = PieceNames.BIG_BLOCK
+                        self.board[pos_i - 1][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.TAIL
+                        self.board[pos_i][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i + 1][pos_j] = PieceNames.EMPTY
+                        self.board[pos_i + 1][pos_j + 1] = PieceNames.EMPTY
+                    case Directions.DOWN:
+                        self.board[pos_i + 1][pos_j] = PieceNames.BIG_BLOCK
+                        self.board[pos_i + 1][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i + 2][pos_j] = PieceNames.TAIL
+                        self.board[pos_i + 2][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                        self.board[pos_i][pos_j + 1] = PieceNames.EMPTY
+                    case Directions.LEFT:
+                        self.board[pos_i][pos_j - 1] = PieceNames.BIG_BLOCK
+                        self.board[pos_i][pos_j] = PieceNames.TAIL
+                        self.board[pos_i + 1][pos_j - 1] = PieceNames.TAIL
+                        self.board[pos_i + 1][pos_j] = PieceNames.TAIL
+                        self.board[pos_i][pos_j + 1] = PieceNames.EMPTY
+                        self.board[pos_i + 1][pos_j + 1] = PieceNames.EMPTY
+                    case Directions.RIGHT:
+                        self.board[pos_i][pos_j + 1] = PieceNames.BIG_BLOCK
+                        self.board[pos_i][pos_j + 2] = PieceNames.TAIL
+                        self.board[pos_i + 1][pos_j + 1] = PieceNames.TAIL
+                        self.board[pos_i + 1][pos_j + 2] = PieceNames.TAIL
+                        self.board[pos_i][pos_j] = PieceNames.EMPTY
+                        self.board[pos_i + 1][pos_j] = PieceNames.EMPTY
 
     def hash(self):
         board_hash = 0
         for i in range(1, 6):
             for j in range(1, 5):
-                if self.board[i][j] != 'x' and self.board[i][j] != 'O':
+                if self.board[i][j] != PieceNames.TAIL and self.board[i][j] != PieceNames.EMPTY:
                     part = self.indexer(self.board[i][j])
                     board_hash ^= zobrist_hash_table[i][j][part]
         return board_hash
@@ -198,13 +198,13 @@ class Board:
     @staticmethod
     def indexer(part):
         match part:
-            case 'a':
+            case PieceNames.HORI_2:
                 return 0
-            case 'b':
+            case PieceNames.VERT_2:
                 return 1
-            case 'c':
+            case PieceNames.SINGL:
                 return 2
-            case 'd':
+            case PieceNames.BIG_BLOCK:
                 return 3
 
     def update_hash(self, board_hash, piece, position, direction):
@@ -237,14 +237,14 @@ class Board:
             for j in range(1, 5):
                 piece = self.board[i][j]
                 part = self.indexer(self.board[i][j])
-                if piece == 'd' or piece == 'b':
+                if piece == PieceNames.BIG_BLOCK or piece == PieceNames.VERT_2:
                     if j == 1:
                         board_hash ^= zobrist_hash_table[i][j][part]
                         board_hash ^= zobrist_hash_table[i][j + 2][part]
                     if j == 3:
                         board_hash ^= zobrist_hash_table[i][j][part]
                         board_hash ^= zobrist_hash_table[i][j - 2][part]
-                elif piece == 'a' or piece == 'c':
+                elif piece == PieceNames.HORI_2 or piece == PieceNames.SINGL:
                     if j == 1:
                         board_hash ^= zobrist_hash_table[i][j][part]
                         board_hash ^= zobrist_hash_table[i][j + 3][part]

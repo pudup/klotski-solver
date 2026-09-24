@@ -11,6 +11,7 @@ positions = [
     [0, 0, 0, 0, 0, 0],  # Also Padding
 ]
 
+# TODO: Fix magic numbers in code (use constants?)
 
 class Animator:
     def __init__(self, surface, grid):
