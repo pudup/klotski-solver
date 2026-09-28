@@ -1,4 +1,6 @@
 import pygame
+
+
 class Block(pygame.sprite.Sprite):
     def __init__(self, name, num=0, posi_i=0, posi_j=0):
         super().__init__()

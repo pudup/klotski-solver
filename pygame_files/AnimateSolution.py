@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+
 def animate_solution(mover, path):
     for move in path:
         for event in pygame.event.get():

@@ -3,6 +3,7 @@ import pygame
 THICC_LINES_COL = (44, 54, 57)
 BACKGROUND_COL = (245, 245, 245)
 
+
 # TODO: Fix magic numbers in code (use constants?)
 
 def draw(surface):

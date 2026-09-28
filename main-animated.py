@@ -45,6 +45,5 @@ def main():
             animate_solution(mover, path)
 
 
-
 if __name__ == "__main__":
     main()

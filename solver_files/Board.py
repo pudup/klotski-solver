@@ -46,17 +46,21 @@ class Board:
                     if self.board[pos_i + 2][pos_j] == PieceNames.EMPTY:
                         piece[2].append(Directions.DOWN)
                     # Left Check
-                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j - 1] == PieceNames.EMPTY:
+                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY and self.board[pos_i + 1][
+                        pos_j - 1] == PieceNames.EMPTY:
                         piece[2].append(Directions.LEFT)
                     # Right Check
-                    if self.board[pos_i][pos_j + 1] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j + 1] == PieceNames.EMPTY:
+                    if self.board[pos_i][pos_j + 1] == PieceNames.EMPTY and self.board[pos_i + 1][
+                        pos_j + 1] == PieceNames.EMPTY:
                         piece[2].append(Directions.RIGHT)
                 case PieceNames.VERT_2:
                     # Up Check
-                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY and self.board[pos_i - 1][pos_j + 1] == PieceNames.EMPTY:
+                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY and self.board[pos_i - 1][
+                        pos_j + 1] == PieceNames.EMPTY:
                         piece[2].append(Directions.UP)
                     # Down Check
-                    if self.board[pos_i + 1][pos_j] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j + 1] == PieceNames.EMPTY:
+                    if self.board[pos_i + 1][pos_j] == PieceNames.EMPTY and self.board[pos_i + 1][
+                        pos_j + 1] == PieceNames.EMPTY:
                         piece[2].append(Directions.DOWN)
                     # Left Check
                     if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY:
@@ -79,16 +83,20 @@ class Board:
                         piece[2].append(Directions.RIGHT)
                 case PieceNames.BIG_BLOCK:
                     # Up Check
-                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY and self.board[pos_i - 1][pos_j + 1] == PieceNames.EMPTY:
+                    if self.board[pos_i - 1][pos_j] == PieceNames.EMPTY and self.board[pos_i - 1][
+                        pos_j + 1] == PieceNames.EMPTY:
                         piece[2].append(Directions.UP)
                     # Down Check
-                    if self.board[pos_i + 2][pos_j] == PieceNames.EMPTY and self.board[pos_i + 2][pos_j + 1] == PieceNames.EMPTY:
+                    if self.board[pos_i + 2][pos_j] == PieceNames.EMPTY and self.board[pos_i + 2][
+                        pos_j + 1] == PieceNames.EMPTY:
                         piece[2].append(Directions.DOWN)
                     # Left Check
-                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j - 1] == PieceNames.EMPTY:
+                    if self.board[pos_i][pos_j - 1] == PieceNames.EMPTY and self.board[pos_i + 1][
+                        pos_j - 1] == PieceNames.EMPTY:
                         piece[2].append(Directions.LEFT)
                     # Right Check
-                    if self.board[pos_i][pos_j + 2] == PieceNames.EMPTY and self.board[pos_i + 1][pos_j + 2] == PieceNames.EMPTY:
+                    if self.board[pos_i][pos_j + 2] == PieceNames.EMPTY and self.board[pos_i + 1][
+                        pos_j + 2] == PieceNames.EMPTY:
                         piece[2].append(Directions.RIGHT)
 
             if piece[2]:
